@@ -1,0 +1,9 @@
+.env
+.env.local
+.venv
+env/
+venv/
+__pycache__/
+tstbard.py
+tstopenai.py
+config.py
