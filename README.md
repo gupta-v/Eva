@@ -10,7 +10,7 @@ Eva is a Python-based desktop assistant designed to streamline various tasks for
 - **Web Browsing**: Eva can open predefined websites, providing quick access to frequently visited pages.
 - **Application Management**: Allows users to open specific applications installed on their computer effortlessly.
 - **Music Playback**: Eva can play music from a specified path, catering to users' entertainment needs.
-- **Time Reporting**: Provides real-time reporting of the current time, aiding users in time management.
+- **Time Reporting**: Provides real-time reporting of the current time.
 - **Web Search**: Performs web searches using Google, facilitating quick access to information.
 
 ## Uses and Scope
@@ -21,7 +21,7 @@ Eva serves as a versatile desktop assistant, catering to a wide range of user ne
 - **Entertainment**: Eva enhances the entertainment experience by playing music on command, providing quick access to favorite tunes.
 - **Information Retrieval**: With the ability to perform web searches, Eva serves as a valuable tool for retrieving information efficiently.
 - **AI Interaction**: The integration with the Gemini API enables users to engage in meaningful conversations with Eva, leveraging advanced AI capabilities.
-- **Customization**: Users can customize Eva by adding new websites to the list of predefined sites, tailoring the assistant to their specific preferences and requirements.
+- **Customization**: Users can customize Eva by adding new websites to the list or modifying the paths for their installed applications.
 
 ## Software And Tools Requirements
 
@@ -29,6 +29,13 @@ Eva serves as a versatile desktop assistant, catering to a wide range of user ne
 2. [Gemini Account](https://gemini.google.com/)
 3. [Git CLI](https://git-scm.com/book/en/v2/Getting-Started-The-Command-Line)
 4. [VSCode IDE](https://code.visualstudio.com/)
+
+## Getting Started
+
+### Prerequisites
+
+- Python 3.7 or higher
+- `pip` (Python package manager)
 
 ## Installation
 
@@ -58,6 +65,13 @@ Eva serves as a versatile desktop assistant, catering to a wide range of user ne
      ```
      GEMINI_API_KEY=your_gemini_api_key_here
      ```
+5. Set up your application paths:
+   - Create a `path.py` file in the root directory of the project.
+   - Add your application paths to the `path.py` file:
+   - Refer to the `path.py.example` file for the structure.
+   ```
+    APPLICATION_PATH=your_application_path_here
+   ```
 
 ## Usage
 
@@ -105,40 +119,50 @@ To add a new application, follow these steps:
 1. Locate the section in the main script (`eva.py`) where applications are opened. It should look like this:
 
 ```python
-elif "Open Spotify".lower() in query.lower():
-    pathToSpotify = "C:/Users/Lenovo/AppData/Roaming/Spotify/Spotify.exe"
-    say("Opening Spotify Sir...")
-    subprocess.Popen(pathToSpotify)
+elif "Open App_name".lower() in query.lower():
+    pathToApp = path.PATH_TO_APP
+    print("Opening App_name Sir...")
+    say("Opening App_name Sir...")
+    subprocess.Popen(pathToApp)
 ```
 
 To add a new application, follow these steps:
 
-1. Replace `"Open Spotify"` with the name of your application. For example, if your application is named "YourAppName", it would look like this:
+1. Add your application paths to the `path.py` file:
 
-```python
-elif "Open YourAppName".lower() in query.lower():
-```
+   - Refer to the `path.py.example` file for the structure.
 
-2. Replace the pathToSpotify variable with the path to your application's executable file. For example:
+   ```python
+   APPLICATION_PATH=your_application_path_here
+   ```
 
-```python
-pathToYourApp = "C:/Path/To/YourApp/YourApp.exe"
-```
+2. Replace `"Open App_name"` with the name of your application. For example, if your application is named "YourAppName", it would look like this:
 
-3. Update the message to be spoken by Eva to indicate the opening of your application. For example:
+   ```python
+   elif "Open YourAppName".lower() in query.lower():
+   ```
 
-```python
-say("Opening YourAppName Sir...")
-```
+3. Replace the pathToApp variable with the path to your application's executable file. For example:
 
-4. Here's how the updated section would look:
+   ```python
+   pathToYourApp = path.PATH_TO_YOURAPP
+   ```
 
-```python
-elif "Open YourAppName".lower() in query.lower():
-    pathToYourApp = "C:/Path/To/YourApp/YourApp.exe"
-    say("Opening YourAppName Sir...")
-    subprocess.Popen(pathToYourApp)
-```
+4. Update the message to be spoken and printed by Eva to indicate the opening of your application. For example:
+
+   ```python
+   print("Opening YourAppName Sir...")
+   say("Opening YourAppName Sir...")
+   ```
+
+5. Here's how the updated section would look:
+
+   ```python
+   elif "Open YourAppName".lower() in query.lower():
+      pathToYourApp = path.PATH_TO_YOURAPP
+      say("Opening YourAppName Sir...")
+      subprocess.Popen(pathToYourApp)
+   ```
 
 ## Using Artificial Intelligence
 
@@ -147,3 +171,9 @@ Eva utilizes the Gemini API to interact with artificial intelligence. Simply say
 ## Output Folder for AI Responses
 
 Eva saves the AI-generated responses in a folder named AI_H in the root directory of the project. If the folder doesn't exist, it will be created automatically. Each response is saved as a text file.
+
+## Important Notes:
+
+- Ensure that the paths to applications in path.py are valid for your system.
+
+- You can further customize Eva by modifying the main.py file to include additional websites or applications as per your preferences.

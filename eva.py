@@ -7,6 +7,7 @@ import google.generativeai as genai
 import random
 import os
 import pyttsx3
+import path
 from dotenv import load_dotenv 
 
 load_dotenv()
@@ -110,6 +111,7 @@ if __name__ == '__main__':
     while True:
         print("listening.....")
         query = takeCommand()
+        print(query)
 
         sites = [["Youtube", "https://youtube.com"], ["Google", "https://google.com"],
                  ["Wikipedia", "https://wikipedia.com"],["GPT","https://chat.openai.com"],
@@ -127,28 +129,62 @@ if __name__ == '__main__':
 
         elif "Play Music".lower() in query.lower():
             musicPath = "C:/Users/Lenovo/Music/Omen.mp3"
+            print("Playing Music")
+            say("Playing Music")
             subprocess.call(["start", musicPath], shell=True)
 
-        elif "Open Opera GX".lower() in query.lower():
-            pathToOperaGx="C:/Users/Lenovo/AppData/Local/Programs/Opera GX/launcher.exe"
-            say("Opening Opera GX sir..")
-            subprocess.Popen(pathToOperaGx)
-
         elif "Open Spotify".lower() in query.lower():
-            pathToSpotify="C:/Users/Lenovo/AppData/Roaming/Spotify/Spotify.exe"
+            pathToSpotify=path.PATH_TO_SPOTIFY
+            print("Opening Spotify Sir...")
             say("Opening Spotify Sir...")
             subprocess.Popen(pathToSpotify)
             
+        elif "Open Opera GX".lower() in query.lower():
+            pathToOperaGx=path.PATH_TO_OPERA_GX
+            print("Opening Opera GX sir..")
+            say("Opening Opera GX sir..")
+            subprocess.Popen(pathToOperaGx)
+            
+        elif "Open Brave".lower() in query.lower():
+            pathToBrave=path.PATH_TO_BRAVE
+            print("Opening Brave sir..")
+            say("Opening Brave sir..")
+            subprocess.Popen(pathToBrave)
+            
+        elif "Open Thorium".lower() in query.lower():
+            pathToThorium=path.PATH_TO_THORIUM
+            print("Opening Thorium sir..")
+            say("Opening Thorium sir..")
+            subprocess.Popen(pathToThorium)
+
+            
         elif "Open Whatsapp".lower() in query.lower():
+             print("Opening Whatsapp Sir...")
              say("Opening Whatsapp Sir...")
              os.startfile("whatsapp://")
              
         elif "Open Telegram".lower() in query.lower():
+             print("Opening Telegram Sir...")
              say("Opening Telegram Sir...")
              os.startfile("tg://")
-
+            
+        elif "Open Steam".lower() in query.lower():
+            pathToSteam=path.PATH_TO_STEAM
+            print("Opening Steam Sir...")
+            say("Opening Steam Sir...")
+            subprocess.Popen(pathToSteam)
+            
+        elif "Open Riot Client".lower() in query.lower():
+            pathToRiot=path.PATH_TO_RIOT
+            print("Opening Riot Client Sir...")
+            say("Opening Riot Client Sir...")
+            subprocess.Popen(pathToRiot)
+            
+        
         elif "the time".lower() in query.lower():
             strf=datetime.datetime.now().strftime("%H:%M:%S")
+            print(f"The time is {strf}" )
+            say("The time is ")
             say(strf)
 
         elif "Using Artificial Intelligence".lower() in query.lower():
@@ -166,6 +202,14 @@ if __name__ == '__main__':
             search_url = f"https://www.google.com/search?q={search_query}"
             webbrowser.open(search_url)
             print("Searching on the web for:", search_query)
+            
+        elif "clear terminal".lower() in query.lower():
+            print("Clearing terminal sir...")
+            say("Clearing terminal sir...")
+            if os.name == 'nt':  # For Windows
+                os.system('cls')
+            else:  # For Linux and MacOS
+                os.system('clear')
 
 
 

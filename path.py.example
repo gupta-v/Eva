@@ -1,0 +1,13 @@
+# todo:add your paths here
+
+# Application:
+PATH_TO_SPOTIFY= your_spotify_path_here
+
+#Browsers:
+PATH_TO_OPERA_GX= your_opera_gx_path_here
+PATH_TO_BRAVE= your_brave_path_here
+PATH_TO_THORIUM= your_thorium_path_here
+
+#Game Platforms:
+PATH_TO_STEAM= your_steam_path_here
+PATH_TO_RIOT= your_riot_client_path_here
