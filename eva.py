@@ -31,7 +31,7 @@ def aichat(query):
     prompt_parts = [query]
     response = model.generate_content(prompt_parts)
     result = response.text
-    print(result)
+    print(result,flush=True)
     say(result)
     Chatstr += f"{result}\n"
 
@@ -57,11 +57,11 @@ def AI(prompt):
     # print(result)
     text += result
 
-    if not os.path.exists('AI_H'):
-        os.mkdir("AI_H")
+    if not os.path.exists('AI_Responses'):
+        os.mkdir("AI_Responses")
 
-    # with open(f"AI_H/Prompt- {random.randint(1,212837363537)}",'w') as f:
-    with open(f"AI_H/{' '.join(prompt.split('intelligence')[1:]).strip()}.txt",'w') as f:
+    # with open(f"AI_Responses/Prompt- {random.randint(1,212837363537)}",'w') as f:
+    with open(f"AI_Responses/{' '.join(prompt.split('intelligence')[1:]).strip()}.txt",'w') as f:
         f.write(text)
 
 
@@ -88,30 +88,30 @@ def takeCommand():
     while True:
         with sr.Microphone() as source: 
             r.adjust_for_ambient_noise(source)# Adjust for ambient noise
-            print("Listening...")
+            print("Listening...", flush=True)
             audio = r.listen(source)  
             try:
-                print("Recognizing...")
+                print("Recognizing...", flush=True)
                 query = r.recognize_google(audio, language="en-in")
                 return query
                 
             except sr.UnknownValueError:
-                print("Sorry, I couldn't understand what you said.")
+                print("Sorry, I couldn't understand what you said.", flush=True)
                 continue
             except sr.RequestError as e:
-                print(f"Could not request results from Google Speech Recognition service; {e}")
+                print(f"Could not request results from Google Speech Recognition service; {e}", flush=True)
                 continue
 
 
 
 
 if __name__ == '__main__':
-    print('Eva at your service Sir...')
+    print('Eva at your service Sir...', flush=True)
     say("Eva at your service sir")
     while True:
-        print("listening.....")
+        print("listening.....", flush=True)
         query = takeCommand()
-        print(query)
+        print(query, flush=True)
 
         sites = [["Youtube", "https://youtube.com"], ["Google", "https://google.com"],
                  ["Wikipedia", "https://wikipedia.com"],["GPT","https://chat.openai.com"],
@@ -119,92 +119,97 @@ if __name__ == '__main__':
                  ["Internshala","https://internshala.com"]]
         for site in sites:
             if f"Open {site[0]}".lower() in query.lower():
+                print(f"Opening {site[0]} sir ..", flush=True)
                 say(f"Opening {site[0]} sir ..")
                 webbrowser.open(site[1])
 
         if "Eva quit".lower() in query.lower():
-            print("signing off for today,have a nice day sir...")
-            say("signing off for today   Have a nice day sir...")
+            print("signing off for today,have a nice day sir...", flush=True)
+            say("signing off for today         Have a nice day sir...")
             exit()
 
         elif "Play Music".lower() in query.lower():
             musicPath = "C:/Users/Lenovo/Music/Omen.mp3"
-            print("Playing Music")
+            print("Playing Music", flush=True)
             say("Playing Music")
             subprocess.call(["start", musicPath], shell=True)
 
         elif "Open Spotify".lower() in query.lower():
             pathToSpotify=path.PATH_TO_SPOTIFY
-            print("Opening Spotify Sir...")
+            print("Opening Spotify Sir...", flush=True)
             say("Opening Spotify Sir...")
             subprocess.Popen(pathToSpotify)
             
         elif "Open Opera GX".lower() in query.lower():
             pathToOperaGx=path.PATH_TO_OPERA_GX
-            print("Opening Opera GX sir..")
+            print("Opening Opera GX sir..", flush=True)
             say("Opening Opera GX sir..")
             subprocess.Popen(pathToOperaGx)
             
         elif "Open Brave".lower() in query.lower():
             pathToBrave=path.PATH_TO_BRAVE
-            print("Opening Brave sir..")
+            print("Opening Brave sir..", flush=True)
             say("Opening Brave sir..")
             subprocess.Popen(pathToBrave)
             
         elif "Open Thorium".lower() in query.lower():
             pathToThorium=path.PATH_TO_THORIUM
-            print("Opening Thorium sir..")
+            print("Opening Thorium sir..", flush=True)
             say("Opening Thorium sir..")
             subprocess.Popen(pathToThorium)
 
             
         elif "Open Whatsapp".lower() in query.lower():
-             print("Opening Whatsapp Sir...")
+             print("Opening Whatsapp Sir...", flush=True)
              say("Opening Whatsapp Sir...")
              os.startfile("whatsapp://")
              
         elif "Open Telegram".lower() in query.lower():
-             print("Opening Telegram Sir...")
+             print("Opening Telegram Sir...", flush=True)
              say("Opening Telegram Sir...")
              os.startfile("tg://")
             
         elif "Open Steam".lower() in query.lower():
             pathToSteam=path.PATH_TO_STEAM
-            print("Opening Steam Sir...")
+            print("Opening Steam Sir...", flush=True)
             say("Opening Steam Sir...")
             subprocess.Popen(pathToSteam)
             
         elif "Open Riot Client".lower() in query.lower():
             pathToRiot=path.PATH_TO_RIOT
-            print("Opening Riot Client Sir...")
+            print("Opening Riot Client Sir...", flush=True)
             say("Opening Riot Client Sir...")
             subprocess.Popen(pathToRiot)
             
         
         elif "the time".lower() in query.lower():
             strf=datetime.datetime.now().strftime("%H:%M:%S")
-            print(f"The time is {strf}" )
+            print(f"The time is {strf}" , flush=True)
             say("The time is ")
             say(strf)
 
         elif "Using Artificial Intelligence".lower() in query.lower():
             AI(prompt=query)
+            title=(' '.join(query.split('intelligence')[1:]).strip())
+            print(f"You can view the AI response for {title} generated by me in the AI_Responses.",flush=True)
+            say(f"You can view the AI response for {title}")
+            say("generated by me in the AI_Responses.")
 
         elif "reset chat".lower() in query.lower():
             Chatstr=""
 
         elif "answer me".lower() in query.lower():
-            print("Chatting..\n")
+            print("Chatting..\n", flush=True)
             aichat(query)
             
         elif "Web Search".lower() in query.lower():
             search_query = query.lower().replace("search on web", "").strip()
             search_url = f"https://www.google.com/search?q={search_query}"
             webbrowser.open(search_url)
-            print("Searching on the web for:", search_query)
+            print("Searching on the web for:", search_query, flush=True)
             
         elif "clear terminal".lower() in query.lower():
-            print("Clearing terminal sir...")
+            print("Clearing terminal sir...", flush=True)
             say("Clearing terminal sir...")
             if os.name == 'nt':  # For Windows
                 os.system('cls')

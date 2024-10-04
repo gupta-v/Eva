@@ -1,0 +1,129 @@
+/* Fix the background */
+body {
+    background-image: url('/static/assets/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* This keeps the background fixed */
+    color: white;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    /* Make sure the body takes the full height of the viewport */
+    margin: 0;
+    overflow: hidden;
+    /* Prevent scrolling of the body */
+}
+
+/* Chat container */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Align items to the left */
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    padding-left: 180px;
+    /* Space for the sidebar */
+}
+
+.chat-bubble {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    width: 85%;
+    height: 82%;
+    max-height: 82%;
+    overflow-y: auto;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+
+button {
+    background-color: #535353;
+    color: rgb(152, 151, 151);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.6s, box-shadow 0.6s, background-color 0.8s, color 0.6s;
+}
+
+/* 3D hover effect */
+button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background-color: #070707;
+    color: rgb(255, 255, 255);
+}
+
+/* Active button effect */
+button:active {
+    transform: translateY(2px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+
+}
+
+/* Add this to your existing style.css */
+
+ul {
+    list-style-type: none;
+    /* Remove default bullet points */
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+    /* Space between list items */
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+    /* Link color */
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+    /* Underline on hover */
+}
+
+/* Add this to your existing style.css */
+
+/* Sidebar styles */
+.sidebar {
+    position: absolute;
+    /* Positioning the sidebar */
+    top: 20px;
+    /* Adjust to your preference */
+    left: 20px;
+    /* Adjust to your preference */
+    z-index: 1;
+    /* Ensure it's above other elements */
+}
+
+.sidebar-button {
+    background-color: #535353;
+    /* Match button color */
+    color: rgb(152, 151, 151);
+    /* Text color */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Button hover effect */
+.sidebar-button:hover {
+    background-color: #070707;
+    /* Darker on hover */
+    color: rgb(255, 255, 255);
+    /* Change text color */
+}

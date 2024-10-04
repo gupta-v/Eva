@@ -11,3 +11,6 @@ PATH_TO_THORIUM= your_thorium_path_here
 #Game Platforms:
 PATH_TO_STEAM= your_steam_path_here
 PATH_TO_RIOT= your_riot_client_path_here
+
+#AI_Responses Folder
+PATH_TO_AI_RESPONSES= your_ai_response_folder_path_here

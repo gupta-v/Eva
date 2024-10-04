@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Content</title>
+    <style>
+      body {
+        background-image: url("/static/assets/background.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: white;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        overflow: hidden; /* Prevent overall scrolling */
+      }
+      .content {
+        background-color: rgba(0, 0, 0, 0.8);
+        border-radius: 10px;
+        padding: 20px;
+        max-height: 75vh; /* Set max height for scrolling */
+        overflow-y: auto; /* Enable vertical scrolling */
+        margin: 0px auto; /* Center the content */
+        width: 85%; /* Width of the content */
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        white-space: pre-wrap; /* Preserve whitespace and line breaks */
+        word-wrap: break-word; /* Prevent long words from breaking the layout */
+        font-size: 14px; /* Adjust font size for better readability */
+        line-height: 1.5; /* Increase line height for better spacing */
+      }
+      pre {
+        margin: 20px; /* Remove default margin */
+        white-space: pre-wrap; /* Preserve whitespace and line breaks */
+        overflow-wrap: break-word; /* Prevent long words from breaking the layout */
+        overflow: hidden; /* Prevent horizontal scrolling */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>{{ file_name }}</h1>
+    <div class="content">
+      <pre>{{ content }}</pre>
+    </div>
+  </body>
+</html>

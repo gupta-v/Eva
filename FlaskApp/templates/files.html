@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI_Responses</title>
+    <style>
+      body {
+        background-image: url("/static/assets/background.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        color: white; /* White text */
+        font-family: Arial, sans-serif; /* Font styling */
+        margin: 0; /* Remove default margin */
+        padding: 0; /* Remove padding */
+        height: 100vh; /* Full viewport height */
+        overflow: hidden; /* Prevent scrolling on the background */
+        display: flex;
+        justify-content: center; /* Center container horizontally */
+        align-items: flex-start; /* Align items at the top */
+      }
+
+      .container {
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.75
+        ); /* Slightly transparent black background */
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px;
+        width: 85%; /* 85% width of the screen */
+        height: 85%; /* 85% height of the screen */
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center content horizontally */
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        overflow-y: auto; /* Allow scrolling inside the container */
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .file-list {
+        list-style-type: none; /* Remove bullet points */
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center items horizontally */
+      }
+
+      .file-item {
+        background-color: #3a3f47; /* File item background */
+        margin: 10px 0; /* Space between items */
+        padding: 10px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        width: 100%; /* Make file items take full width */
+        max-width: 600px; /* Maximum width */
+        text-align: center; /* Center the file name */
+      }
+
+      .file-item:hover {
+        background-color: #4a4f57; /* Slightly darker on hover */
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>AI_Responses</h1>
+      <ul class="file-list">
+        {% for file in files %}
+        <li class="file-item" onclick="openFile('{{ file }}')">{{ file }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <script>
+      function openFile(fileName) {
+        window.open(`/open_file?file=${fileName}`, "_blank"); // Open file in a new tab
+      }
+    </script>
+  </body>
+</html>
