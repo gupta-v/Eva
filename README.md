@@ -155,6 +155,7 @@ sites = [
     ["CLM", "https://claude.ai"],
     ["LinkedIN", "https://www.linkedin.com"],
     ["Internshala", "https://internshala.com"],
+    ["GitHub","https://github.com/"],
     ["YourSiteName", "https://your-site-url.com"]
     # Add your site here
 ]

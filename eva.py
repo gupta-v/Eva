@@ -116,7 +116,7 @@ if __name__ == '__main__':
         sites = [["Youtube", "https://youtube.com"], ["Google", "https://google.com"],
                  ["Wikipedia", "https://wikipedia.com"],["GPT","https://chat.openai.com"],
                  ["CLM","https://claude.ai"],["LinkedIN","https://www.linkedin.com"],
-                 ["Internshala","https://internshala.com"]]
+                 ["Internshala","https://internshala.com"],["GitHub","https://github.com/"]]
         for site in sites:
             if f"Open {site[0]}".lower() in query.lower():
                 print(f"Opening {site[0]} sir ..", flush=True)
@@ -203,16 +203,30 @@ if __name__ == '__main__':
             aichat(query)
             
         elif "Web Search".lower() in query.lower():
-            search_query = query.lower().replace("web search", "").strip()
-            search_query = query.lower().replace("web search for", "").strip()
+            if "web search for" in query.lower():
+                search_query = query.lower().replace("web search for", "").strip()
+            elif "web search" in query.lower(): 
+                search_query = query.lower().replace("web search", "").strip()
+
             search_url = f"https://www.google.com/search?q={search_query}"
             webbrowser.open(search_url)
             print("Searching on the web for:", search_query, flush=True)
-            say("Searching on the web for:", search_query)
+            say(f"Searching on the web for:{search_query}" )
+            
+        elif "Search on web".lower() in query.lower():
+            if "search on web for" in query.lower():
+                search_query = query.lower().replace("search on web for", "").strip()
+            elif "search on web" in query.lower(): 
+                search_query = query.lower().replace("search on web", "").strip()
+
+            search_url = f"https://www.google.com/search?q={search_query}"
+            webbrowser.open(search_url)
+            print("Searching on the web for:", search_query, flush=True)
+            say(f"Searching on the web for:{search_query}" )
             
         elif "clear terminal".lower() in query.lower():
-            print("Clearing terminal sir...", flush=True)
             say("Clearing terminal sir...")
+            print("Clearing terminal sir...", flush=True)
             if os.name == 'nt':  # For Windows
                 os.system('cls')
             else:  # For Linux and MacOS
