@@ -203,10 +203,12 @@ if __name__ == '__main__':
             aichat(query)
             
         elif "Web Search".lower() in query.lower():
-            search_query = query.lower().replace("search on web", "").strip()
+            search_query = query.lower().replace("web search", "").strip()
+            search_query = query.lower().replace("web search for", "").strip()
             search_url = f"https://www.google.com/search?q={search_query}"
             webbrowser.open(search_url)
             print("Searching on the web for:", search_query, flush=True)
+            say("Searching on the web for:", search_query)
             
         elif "clear terminal".lower() in query.lower():
             print("Clearing terminal sir...", flush=True)
