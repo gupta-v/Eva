@@ -181,6 +181,18 @@ if __name__ == '__main__':
             say("Opening Riot Client Sir...")
             subprocess.Popen(pathToRiot)
             
+        elif "Open Razer Cortex".lower() in query.lower():
+            pathToRazerCortex=path.PATH_TO_RAZER_CORTEX
+            print("Opening Razer Cortex Sir...", flush=True)
+            say("Opening Razer Cortex Sir...")
+            subprocess.Popen(pathToRazerCortex)
+            
+        elif "Open Razer Synapse".lower() in query.lower():
+            pathToRazerSynapse=path.PATH_TO_RAZER_SYNAPSE
+            print("Opening Razer Synapse Sir...", flush=True)
+            say("Opening Razer Synapse Sir...")
+            subprocess.Popen(pathToRazerSynapse)
+            
         
         elif "the time".lower() in query.lower():
             strf=datetime.datetime.now().strftime("%H:%M:%S")

@@ -29,7 +29,7 @@ def run_eva():
         
         # Start eva.py only if it's not running
         eva_process = subprocess.Popen(
-            ['python', eva_py_path],
+            ['python','-u', eva_py_path],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             universal_newlines=True
