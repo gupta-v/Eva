@@ -129,7 +129,7 @@ if __name__ == '__main__':
             exit()
 
         elif "Play Music".lower() in query.lower():
-            musicPath = "C:/Users/Lenovo/Music/Omen.mp3"
+            musicPath = "C:/Users/Lenovo/Music/mr_steal_ur_girl.mp3"
             print("Playing Music", flush=True)
             say("Playing Music")
             subprocess.call(["start", musicPath], shell=True)
@@ -157,6 +157,18 @@ if __name__ == '__main__':
             print("Opening Thorium sir..", flush=True)
             say("Opening Thorium sir..")
             subprocess.Popen(pathToThorium)
+            
+        elif "Open Firefox".lower() in query.lower():
+            pathToFirefox=path.PATH_TO_FIREFOX
+            print("Opening Firefox sir..", flush=True)
+            say("Opening Firefox sir..")
+            subprocess.Popen(pathToFirefox)
+            
+        elif "Open Edge".lower() in query.lower():
+            pathToEdge=path.PATH_TO_EDGE
+            print("Opening Edge sir..", flush=True)
+            say("Opening Edge sir..")
+            subprocess.Popen(pathToEdge)
 
             
         elif "Open Whatsapp".lower() in query.lower():
