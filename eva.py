@@ -11,59 +11,66 @@ import path
 from dotenv import load_dotenv 
 
 load_dotenv()
+# Eva's pre-context
+EVA_CONTEXT = """
+You are Eva, an advanced AI desktop assistant. Your primary function is to assist and interact with your user, 
+whom you should address as "Sir" or "Master". You are helpful, respectful, and always eager to assist. 
+Your responses should be concise yet informative, and you should always maintain a polite and professional demeanor.
+"""
 
-Chatstr=""
-def aichat(query):
-    global Chatstr
-    print(Chatstr)
+Chatstr = ""
+
+chat_session = None
+
+def configure_genai():
+    global chat_session
     genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
-    Chatstr += f"Master: {query}\nEva: "
-    # Set up the model
-    generation_configs = {
-        "temperature": 0.9,
-        "top_p": 1,
-        "top_k": 1,
-        "max_output_tokens": 2048,
+    
+    generation_config = {
+        "temperature": 1,
+        "top_p": 0.95,
+        "top_k": 40,
+        "max_output_tokens": 8192,
     }
+    
+    model = genai.GenerativeModel(
+        model_name="gemini-1.5-pro-002",
+        generation_config=generation_config,
+    )
+    
+    chat_session = model.start_chat(history=[])
+    chat_session.send_message(EVA_CONTEXT)
 
-    model = genai.GenerativeModel(model_name="gemini-1.0-pro", generation_config=generation_configs)
-
-    prompt_parts = [query]
-    response = model.generate_content(prompt_parts)
+def aichat(query):
+    global Chatstr, chat_session
+    print(Chatstr)
+    
+    if chat_session is None:
+        configure_genai()
+    
+    Chatstr += f"Master: {query}\nEva: "
+    response = chat_session.send_message(query)
     result = response.text
-    print(result,flush=True)
+    print(result, flush=True)
     say(result)
     Chatstr += f"{result}\n"
-
+    return result
 
 def AI(prompt):
-    genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
-    text = f"AI response for Prompt: {prompt}\n\n*****************************************************************************\n\n"
-
-    # Set up the model
-    generation_configs = {
-        "temperature": 0.9,
-        "top_p": 1,
-        "top_k": 1,
-        "max_output_tokens": 2048,
-    }
-
-    model = genai.GenerativeModel(model_name="gemini-1.0-pro", generation_config=generation_configs)
-
-    prompt_parts = [prompt]
-
-    response = model.generate_content(prompt_parts)
+    global chat_session
+    if chat_session is None:
+        configure_genai()
+    
+    text = f"AI response for Prompt: {prompt}\n\n{'*' * 75}\n\n"
+    response = chat_session.send_message(prompt)
     result = response.text
-    # print(result)
     text += result
 
     if not os.path.exists('AI_Responses'):
         os.mkdir("AI_Responses")
 
-    # with open(f"AI_Responses/Prompt- {random.randint(1,212837363537)}",'w') as f:
-    with open(f"AI_Responses/{' '.join(prompt.split('intelligence')[1:]).strip()}.txt",'w') as f:
+    with open(f"AI_Responses/{' '.join(prompt.split('intelligence')[1:]).strip()}.txt", 'w') as f:
         f.write(text)
-
 
 
 
