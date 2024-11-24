@@ -1,33 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EVA | Desktop Assistant </title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EVA | Desktop Assistant</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="video-container">
+      <video autoplay loop muted>
+        <source
+          src="{{ url_for('static', filename='assets/background.mp4') }}"
+          type="video/mp4"
+        />
+        Your browser does not support the video tag.
+      </video>
+    </div>
     <div class="chat-container">
-        <!-- Side Tab for AI_Responses  -->
-        <div class="sidebar">
-            <button onclick="location.href='{{ url_for('files') }}'" class="sidebar-button">AI_Responses</button>
-        </div>
-        
-        <div id="log" class="chat-bubble"></div>
-        <div class="button-container">
-            <button onclick="startEva()">Run Eva</button>
-            <button onclick="stopEva()">Stop Eva</button>
-        </div>
+      <!-- Side Tab for AI_Responses -->
+      <div class="sidebar">
+        <button
+          onclick="location.href='{{ url_for('files') }}'"
+          class="sidebar-button"
+        >
+          AI_Responses
+        </button>
+      </div>
+
+      <div id="log" class="chat-bubble"></div>
+      <div class="button-container">
+        <button onclick="startEva()">Run Eva</button>
+        <button onclick="stopEva()">Stop Eva</button>
+      </div>
     </div>
     <script>
-      // JavaScript for starting and stopping Eva remains unchanged
-      // (as provided in your original index.html)
-    </script>
-</body>
-</html>
-
-    <script>
-      // Function to start Eva
+      // JavaScript for starting and stopping Eva
       function startEva() {
         const log = document.getElementById("log");
         log.innerHTML += "<p>Starting Eva...</p>";
@@ -41,7 +51,6 @@
           });
       }
 
-      // Function to stop Eva
       function stopEva() {
         const log = document.getElementById("log");
         fetch("/stop_eva")
@@ -51,17 +60,16 @@
           });
       }
 
-      // Function to stream Eva's output
       function streamEva() {
         const log = document.getElementById("log");
         const eventSource = new EventSource("/stream");
 
         eventSource.onmessage = function (event) {
           if (event.data === "clear") {
-            log.innerHTML = ""; // Clear the chat log when receiving 'clear' signal
+            log.innerHTML = "";
           } else {
             log.innerHTML += `<p>${event.data}</p>`;
-            log.scrollTop = log.scrollHeight; // Auto-scroll to the bottom
+            log.scrollTop = log.scrollHeight;
           }
         };
 

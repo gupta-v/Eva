@@ -1,34 +1,56 @@
-/* Fix the background */
+/* Video Background Container */
+/* Video Background Container */
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    /* Places the video behind the content */
+}
+
+.video-container video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ensures the video fills the viewport */
+    transform: translate(-50%, -50%);
+}
+
+/* Keep existing styles */
 body {
-    background-image: url('/static/assets/background.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    /* This keeps the background fixed */
     color: white;
     font-family: Arial, sans-serif;
     height: 100vh;
-    /* Make sure the body takes the full height of the viewport */
     margin: 0;
     overflow: hidden;
-    /* Prevent scrolling of the body */
 }
 
-/* Chat container */
 .chat-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    /* Align items to the left */
     justify-content: center;
     height: 100vh;
     overflow: hidden;
     padding-left: 180px;
-    /* Space for the sidebar */
+    position: relative;
+    /* Ensure it stacks above the video */
+    z-index: 1;
+    /* Ensure it's above the video */
 }
 
+/* Other styles remain unchanged */
+
+
+/* Chat Bubble Styling */
 .chat-bubble {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(12, 20, 45, 0.5);
     border-radius: 10px;
     padding: 10px;
     margin: 10px;
@@ -36,13 +58,17 @@ body {
     height: 82%;
     max-height: 82%;
     overflow-y: auto;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
-
+/* Button Styling */
 button {
-    background-color: #535353;
-    color: rgb(152, 151, 151);
+    background: linear-gradient(45deg, #0c3e74, #0d3155);
+    color: #86d3fa;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -52,78 +78,64 @@ button {
     transition: transform 0.6s, box-shadow 0.6s, background-color 0.8s, color 0.6s;
 }
 
-/* 3D hover effect */
+/* Button Hover Effect */
 button:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    background-color: #070707;
-    color: rgb(255, 255, 255);
+    transform: scale(1.1);
+    background: linear-gradient(45deg, #5488f0, #1e3a73);
+    box-shadow: 0px 10px 15px rgba(32, 64, 128, 0.5);
+    color: #ffffff;
 }
 
-/* Active button effect */
+/* Active Button Effect */
 button:active {
-    transform: translateY(2px);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-
+    transform: scale(1.05);
+    box-shadow: 0px 5px 10px rgba(32, 64, 128, 0.3);
 }
 
-/* Add this to your existing style.css */
-
-ul {
-    list-style-type: none;
-    /* Remove default bullet points */
-    padding: 0;
-}
-
-li {
-    margin: 10px 0;
-    /* Space between list items */
-}
-
-a {
-    text-decoration: none;
-    color: #007bff;
-    /* Link color */
-    font-weight: bold;
-}
-
-a:hover {
-    text-decoration: underline;
-    /* Underline on hover */
-}
-
-/* Add this to your existing style.css */
-
-/* Sidebar styles */
+/* Sidebar Styling */
 .sidebar {
     position: absolute;
-    /* Positioning the sidebar */
     top: 20px;
-    /* Adjust to your preference */
     left: 20px;
-    /* Adjust to your preference */
     z-index: 1;
-    /* Ensure it's above other elements */
 }
 
 .sidebar-button {
-    background-color: #535353;
-    /* Match button color */
-    color: rgb(152, 151, 151);
-    /* Text color */
+    background: linear-gradient(45deg, #0c3e74, #0d3155);
+    color: #86d3fa;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
+    transition: transform 0.6s, box-shadow 0.6s, background-color 0.8s, color 0.6s;
 }
 
-/* Button hover effect */
+/* Sidebar Button Hover Effect */
 .sidebar-button:hover {
-    background-color: #070707;
-    /* Darker on hover */
-    color: rgb(255, 255, 255);
-    /* Change text color */
+    transform: scale(1.1);
+    background: linear-gradient(45deg, #5389f6, #1e3a73);
+    box-shadow: 0px 10px 15px rgba(32, 64, 128, 0.5);
+    color: #ffffff;
+}
+
+/* Additional Styling */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
 }

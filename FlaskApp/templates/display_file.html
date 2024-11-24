@@ -6,39 +6,71 @@
     <title>File Content</title>
     <style>
       body {
-        background-image: url("/static/assets/background.jpg");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        color: white;
-        font-family: Arial, sans-serif;
         margin: 0;
         padding: 20px;
+        font-family: "Arial", sans-serif;
+        color: white;
         overflow: hidden; /* Prevent overall scrolling */
       }
+
+      /* Video Background */
+      .video-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensure the video covers the entire screen */
+        z-index: -1; /* Place the video behind the content */
+      }
+
+      /* Content Box */
       .content {
-        background-color: rgba(0, 0, 0, 0.8);
-        border-radius: 10px;
+        background-color: rgba(
+          12,
+          20,
+          45,
+          0.7
+        ); /* Semi-transparent night blue */
+        border-radius: 20px; /* Softer, rounded corners */
         padding: 20px;
         max-height: 75vh; /* Set max height for scrolling */
         overflow-y: auto; /* Enable vertical scrolling */
-        margin: 0px auto; /* Center the content */
+        margin: 0 auto; /* Center the content */
         width: 85%; /* Width of the content */
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5); /* Add a soft shadow for depth */
         white-space: pre-wrap; /* Preserve whitespace and line breaks */
         word-wrap: break-word; /* Prevent long words from breaking the layout */
-        font-size: 14px; /* Adjust font size for better readability */
-        line-height: 1.5; /* Increase line height for better spacing */
+        font-size: 16px; /* Adjust font size for better readability */
+        line-height: 1.6; /* Increase line height for better spacing */
+        color: #c6d4f8; /* Light blue-gray text for readability */
       }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 2em;
+        color: #d8e6ff; /* Soft white-blue tone */
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Add subtle text shadow */
+      }
+
       pre {
-        margin: 20px; /* Remove default margin */
-        white-space: pre-wrap; /* Preserve whitespace and line breaks */
-        overflow-wrap: break-word; /* Prevent long words from breaking the layout */
-        overflow: hidden; /* Prevent horizontal scrolling */
+        margin: 20px 0;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+        font-family: "Courier New", Courier, monospace; /* Use monospace for code-like content */
+        color: #e0efff; /* Lighter text color for the content */
       }
     </style>
   </head>
   <body>
+    <!-- Video Background -->
+    <video class="video-background" autoplay muted loop>
+      <source src="/static/assets/background.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <!-- Content -->
     <h1>{{ file_name }}</h1>
     <div class="content">
       <pre>{{ content }}</pre>
