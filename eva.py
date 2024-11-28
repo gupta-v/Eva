@@ -430,7 +430,7 @@ def main():
         elif "search" in query.lower():
             # Handle multiple possible search phrases
             if "search" in query.lower():
-                search_query = query.lower().replace("search for","").replace("web search", "").replace("web search for","").replace("search on web for", "").replace("search on the web for", "").strip()
+                search_query = query.lower().replace("web search", "").replace("web search for","").replace("search on web for", "").replace("search on the web for", "").replace("search for","").strip()
                 
             # Clean up by removing any leading phrase like "Eva"
             search_query = search_query.replace("eva", "").strip()  # Optionally remove "Eva" if it exists
