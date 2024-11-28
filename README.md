@@ -79,7 +79,7 @@ Eva serves as a versatile desktop assistant, catering to a wide range of user ne
 - Python 3.7 or higher
 - `pip` (Python package manager)
 
-# Installation
+### Installation
 
 1. Clone the repository:
 
@@ -130,9 +130,9 @@ Eva serves as a versatile desktop assistant, catering to a wide range of user ne
 
    ```
 
-# Usage
+## Usage
 
-## Running Eva in CLI (Python Backend)
+### Running Eva in CLI (Python Backend)
 
 1. Run the main script:
 
@@ -152,7 +152,7 @@ Eva serves as a versatile desktop assistant, catering to a wide range of user ne
 
 3. To quit Eva, say: "Eva quit", "Eva exit".
 
-## Running Eva in the Browser (Flask Frontend)
+### Running Eva in the Browser (Flask Frontend)
 
 1. Navigate to the FlaskApp directory:
 
@@ -182,7 +182,7 @@ Eva serves as a versatile desktop assistant, catering to a wide range of user ne
    - You can open the response by clicking on the file name.
    - It will open a new tab with the file.
 
-## Running Eva in the Browser using launch script
+### Running Eva in the Browser using launch script
 
 1. Run the following command in the terminal (root directory):
 
@@ -205,9 +205,9 @@ Eva serves as a versatile desktop assistant, catering to a wide range of user ne
    - You can open the response by clicking on the file name.
    - It will open a new tab with the file.
 
-# Customizations
+## Customizations
 
-## Adding New Sites
+### Adding New Sites
 
 You can customize Eva to open additional websites by modifying the `sites` list in the main script (`eva.py`). Here is an example:
 
@@ -226,7 +226,7 @@ sites = [
 ]
 ```
 
-## Adding New Applications
+### Adding New Applications
 
 You can customize Eva to open additional Applications by adding the code in the main script (`eva.py`). Here is an example:
 
@@ -280,7 +280,7 @@ To add a new application, follow these steps:
       subprocess.Popen(pathToYourApp)
    ```
 
-## Customizing Application Search Directories
+### Customizing Application Search Directories
 
 Eva allows you to customize the directories it searches for installed applications. To add or modify directories:
 
@@ -307,7 +307,7 @@ Eva allows you to customize the directories it searches for installed applicatio
    - Prevents users from accidentally modifying eva.py.
    - Ensures that the `SEARCH_DIRS` variable is the single source of truth for directories.
 
-# User Interface
+## User Interface
 
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 5px;">
 
@@ -333,17 +333,17 @@ Eva allows you to customize the directories it searches for installed applicatio
 
 </div>
 
-# Artificial Intelligence
+## Artificial Intelligence
 
 - Eva utilizes the Gemini API to interact with artificial intelligence. Simply say "Using Artificial Intelligence" followed by your query, and Eva will generate a response using AI.
 - Eva keeps a history of your interactions and gathers your information during the initial setup to personalize your experience. Simply say "Answer me" or "Eva Listen," followed by your commands or questions, and Eva will assist you.
 - Eva retains your personal information from the initial setup for a personalized experience. However, the chat history is not saved and will reset each time you restart the app.
 
-# Output Folder for AI Responses
+## Output Folder for AI Responses
 
 Eva saves the AI-generated responses in a folder named AI_Responses in the root directory of the project. If the folder doesn't exist, it will be created automatically. Each response is saved as a text file.
 
-# Important Notes:
+## Important Notes:
 
 - Ensure that the paths to applications and folders in path.py and searchDir.py are valid for your system.
 

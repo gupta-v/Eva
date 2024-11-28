@@ -272,8 +272,8 @@ def main():
             matches = search(app_name, app_paths)
             
             if matches:
-                print(f"\nI found the following matches for {app_name}:",flush=True)
-                say(f"I found the following matches for {app_name}:")
+                print(f"\nI found the  matches for {app_name}:",flush=True)
+                say(f"I found the matches for {app_name}:")
                 
                 # List options for the user
                 for idx, (match, score) in enumerate(matches, start=1):
