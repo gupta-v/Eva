@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>First Time Setup</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Arial", sans-serif;
+        color: white;
+        overflow: hidden;
+      }
+
+      /* Video Background */
+      .video-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensure the video covers the screen */
+        z-index: -1; /* Place the video behind the content */
+      }
+
+      /* Content Overlay */
+      .container {
+        position: relative;
+        background: rgba(12, 20, 45, 0.5); /* Semi-transparent night blue */
+        border-radius: 20px;
+        padding: 20px;
+        margin: 20px auto;
+        width: 85%; /* 85% of the screen width */
+        max-width: 900px; /* Maximum width for large screens */
+        height: 85%; /* 85% of the screen height */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+        overflow-y: auto; /* Scrollable if content exceeds container height */
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 2em;
+        color: #d8e6ff; /* Soft white-blue tone */
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+      }
+
+      .form-group {
+        width: 100%;
+        max-width: 600px;
+        margin-bottom: 15px;
+        text-align: left;
+      }
+
+      label {
+        font-size: 1.2em;
+        color: #86d3fa; /* Light blue-gray text for readability */
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input[type="text"],
+      select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 10px;
+        border: none;
+        background-color: #2a3c55;
+        color: #ffffff;
+        font-size: 1em;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      button {
+        background: linear-gradient(45deg, #5488f0, #1e3a73);
+        color: white;
+        border: none;
+        padding: 15px;
+        border-radius: 20px;
+        width: 100%;
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: transform 0.4s ease, background-color 0.4s ease;
+      }
+
+      button:hover {
+        transform: scale(1.05);
+        background: linear-gradient(45deg, #0c3e74, #0d3155);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      button:active {
+        transform: scale(0.98);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Video Background -->
+    <video class="video-background" autoplay muted loop>
+      <source src="/static/assets/background.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <!-- Content Overlay -->
+    <div class="container">
+      <h1>Let's Get to Know You</h1>
+      <p>
+        Eva needs a little information to assist you better. Please fill out the
+        following form:
+      </p>
+      <form action="/setup" method="POST">
+        <div class="form-group">
+          <label for="name">What's your name?</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="preferred_name"
+            >What would you like me to call you?</label
+          >
+          <input
+            type="text"
+            id="preferred_name"
+            name="preferred_name"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="profession">What's your profession?</label>
+          <select id="profession" name="profession" required>
+            <option value="Student">Student</option>
+            <option value="Working Professional">Working Professional</option>
+            <option value="AI Enthusiast">AI Enthusiast</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="interests"
+            >Please tell me your areas of interest (up to 5):</label
+          >
+          <input type="text" id="interest1" name="interest1" />
+          <input type="text" id="interest2" name="interest2" />
+          <input type="text" id="interest3" name="interest3" />
+          <input type="text" id="interest4" name="interest4" />
+          <input type="text" id="interest5" name="interest5" />
+        </div>
+
+        <button type="submit">Save Information</button>
+      </form>
+    </div>
+  </body>
+</html>

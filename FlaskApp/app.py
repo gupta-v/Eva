@@ -1,7 +1,8 @@
 import os
 import subprocess
-from flask import Flask, render_template, Response, jsonify, request
+from flask import Flask, render_template, Response, jsonify, request, redirect, url_for
 import sys
+import json
 
 # Import the AI_Responses path from path.py
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))  # Ensure the parent directory is in the path
@@ -14,10 +15,52 @@ eva_process = None  # Global variable to track the eva.py process
 # Use the path from path.py for the AI_Responses folder
 AI_Responses_FOLDER = path.PATH_TO_AI_RESPONSES
 
+# Folder and file to store user information
+INFORMATION_FOLDER = 'Information'
+USER_INFO_FILE = os.path.join(INFORMATION_FOLDER, 'user_info.json')
+
 # Route for the main page
 @app.route('/')
 def index():
+    if not os.path.exists(USER_INFO_FILE):
+        return redirect(url_for('ask_info'))  # Redirect to the setup page if user info doesn't exist
     return render_template('index.html')
+
+# Route to ask for user information (First Time Setup)
+@app.route('/setup', methods=['GET', 'POST'])
+def ask_info():
+    if request.method == 'POST':
+        # Extract form data
+        name = request.form.get('name')
+        preferred_name = request.form.get('preferred_name')
+        profession = request.form.get('profession')
+
+        # Collect the interests
+        interests = []
+        for i in range(1, 6):
+            interest = request.form.get(f'interest{i}')
+            if interest:
+                interests.append(interest)
+
+        # Save to user_info.json
+        user_info = {
+            'name': name,
+            'preferred_name': preferred_name,
+            'profession': profession,
+            'interests': interests  # Save all collected interests
+        }
+
+        # Make sure the Information folder exists
+        if not os.path.exists(INFORMATION_FOLDER):
+            os.makedirs(INFORMATION_FOLDER)
+
+        # Save user information into a JSON file
+        with open(USER_INFO_FILE, 'w') as f:
+            json.dump(user_info, f, indent=4)
+
+        return redirect('/')  # Redirect back to the main page after setup
+
+    return render_template('ask_info.html')  # Display the form
 
 # Route to run eva.py
 @app.route('/run_eva')
@@ -29,7 +72,7 @@ def run_eva():
         
         # Start eva.py only if it's not running
         eva_process = subprocess.Popen(
-            ['python','-u', eva_py_path],
+            ['python', '-u', eva_py_path],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             universal_newlines=True

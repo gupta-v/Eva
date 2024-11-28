@@ -4,3 +4,6 @@ pyttsx3
 python-dotenv
 google-generativeai
 PyAudio
+fuzzywuzzy
+re 
+python-Levenshtein

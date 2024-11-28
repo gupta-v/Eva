@@ -16,5 +16,9 @@ PATH_TO_RIOT= your_riot_client_path_here
 PATH_TO_RAZER_CORTEX=your_razer_cortex_path_here
 PATH_TO_RAZER_SYNAPSE=your_razer_syntax_path_here
 
+# CLI
+PATH_TO_CMD=your_cmd_path_here(.lnk)
+PATH_TO_POWERSHELL=your_power_shell_path_here(.lnk)
+
 #AI_Responses Folder
 PATH_TO_AI_RESPONSES= your_ai_response_folder_path_here
