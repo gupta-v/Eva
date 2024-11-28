@@ -1,6 +1,8 @@
 # Eva - Desktop Assistant
 
-Eva is a **Python-based desktop assistant** designed to streamline various tasks for users through voice commands. Leveraging speech recognition, text-to-speech capabilities, and integration with the Gemini API for advanced AI interactions, Eva offers a wide range of functionalities to enhance productivity and convenience.
+**Eva** is an advanced, intelligent desktop assistant built using **Python** to enhance **productivity** and simplify daily tasks. With the power of **speech recognition**, **text-to-speech** functionality, and seamless integration with **Gemini AI**, Eva provides a versatile assistant that can perform a variety of tasks through simple voice commands. Whether it's **opening applications**, **conducting web searches**, or engaging in meaningful **AI conversations**, Eva is designed to adapt to your needs, offering both **convenience** and **efficiency**.
+
+Eva not only helps automate routine tasks but also allows for **customization**, enabling users to personalize their experience by adding new **websites** and **applications** to its repertoire. With a **user-friendly interface** and the ability to **learn and adapt** based on your preferences, Eva is the perfect companion for improving your **productivity** and making **technology** easier to interact with.
 
 ## File Structure
 
