@@ -140,15 +140,26 @@ Eva serves as a versatile desktop assistant, catering to a wide range of user ne
    python eva.py
    ```
 
-2. Eva will start listening for your commands. Here are some examples of what you can say:
+2. Eva will start listening for your commands.
 
-   - **Open Websites**: "Open YouTube", "Open Google", "Open Wikipedia"
-   - **Control Applications**: "Open Opera GX", "Open Spotify"
-   - **Play Music**: "Play Music"
-   - **Report Time**: "What is the time?"
-   - **AI Interaction**: "Using Artificial Intelligence", "Answer me", "Eva Listen"
-   - **Web Search**: "Search on web for Python tutorials"
-   - **Search and Open Applications**: "Search and open VLC", "Find application Brave"
+- Here are commands that you can say:
+
+  - **Report Time**: "What is the time?"
+  - **Play Music**: "Play Music"
+  - **Open Websites**: "Open YouTube", "Open Google", "Open Wikipedia"
+  - **List Websites**: "List Noted Websites"
+  - **Web Search**: "Search on web for Python tutorials", "Web Search for Coding contests"
+  - **Control Applications**: "Open Opera GX", "Open Spotify"
+  - **Scan Disks and Open Installed Applications**: "Search and open VLC", "Find application Brave"
+  - **AI Interaction**: "Answer me (followed by question or query)"
+  - **Enter AI Chat**:
+    ```plaintext
+    "Eva Listen", "Eva Let's Chat"     # To Enter Chat Mode
+    "Eva Quit Chat", "Eva Exit Chat"   # To Quit Chat Mode
+    ```
+  - **AI Generation**: "Using Artificial Intelligence (followed by request or parameters)"
+    - Generates and the response in .txt format and saves it in AI_Response folder
+  - **Clearing the Terminal Screen**: "Clear Terminal"
 
 3. To quit Eva, say: "Eva quit", "Eva exit".
 
@@ -213,17 +224,18 @@ You can customize Eva to open additional websites by modifying the `sites` list 
 
 ```python
 sites = [
-    ["Youtube", "https://youtube.com"],
-    ["Google", "https://google.com"],
-    ["Wikipedia", "https://wikipedia.com"],
-    ["GPT", "https://chat.openai.com"],
-    ["CLM", "https://claude.ai"],
-    ["LinkedIN", "https://www.linkedin.com"],
-    ["Internshala", "https://internshala.com"],
-    ["GitHub","https://github.com/"],
-    ["YourSiteName", "https://your-site-url.com"]
-    # Add your site here
-]
+            ["Youtube", "https://youtube.com/"],
+            ["Instagram","https://instagram.com"],
+            ["Google", "https://google.com/"],
+            ["Wikipedia", "https://wikipedia.com/"],
+            ["GPT","https://chat.openai.com/"],
+            ["CLM","https://claude.ai/"],
+            ["Internshala","https://internshala.com/"],
+            ["GitHub","https://github.com/"],
+            ["LinkedIN","https://www.linkedin.com/"]
+            ["YourSiteName", "https://your-site-url.com"]
+            # Add your site here
+        ]
 ```
 
 ### Adding New Applications
