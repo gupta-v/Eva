@@ -9,36 +9,36 @@ Eva not only helps automate routine tasks but also allows for **customization**,
 ```plaintext
 Eva
 │
-├── AI_Response                 # Folder for storing AI-generated responses
+├── AI_Response                       # Folder for storing AI-generated responses
 │
-├── FlaskApp                    # Flask frontend application
-│   ├── static                  # Static assets like images and CSS
+├── FlaskApp                          # Flask frontend application
+│   ├── static                        # Static assets like images and CSS
 │   │   ├── assets
-│   │   │   ├── background.jpg  # Background image for the UI
-│   │   │   └── background.mp4  # Background video for the UI
-│   │   └── style.css           # CSS for styling the application
+│   │   │   ├── img_background.jpg    # Background image for the UI
+│   │   │   └── vid_background.mp4    # Background video for the UI
+│   │   └── style.css                 # CSS for styling the application
 │   │
-│   ├── templates               # HTML templates for Flask
-│   │   ├── ask_info.html       # HTML for user information setup
-│   │   ├── display_file.html   # HTML to display AI response files
-│   │   ├── files.html          # HTML to list AI response files
-│   │   └── index.html          # Main UI for the application
+│   ├── templates                     # HTML templates for Flask
+│   │   ├── ask_info.html             # HTML for user information setup
+│   │   ├── display_file.html         # HTML to display AI response files
+│   │   ├── files.html                # HTML to list AI response files
+│   │   └── index.html                # Main UI for the application
 │   │
-│   └── app.py                  # Flask application script
+│   └── app.py                        # Flask application script
 │
-├── Information                 # Folder to store user data
-│   └── user_info.json          # JSON file for saving user information
+├── Information                       # Folder to store user data
+│   └── user_info.json                # JSON file for saving user information
 │
-├── path.py                     # Paths for specific assets or applications
-├── path.py.example             # Example template for `path.py`
-├── searchDir.py                # Directories to search for installed applications
-├── eva.py                      # Main backend script for the assistant
-├── launch_eva.py               # Script to start Eva easily
-├── .env                        # Environment variables (API keys, etc.)
-├── .env.example                # Example template for `.env`
-├── .gitignore                  # Files and directories to be ignored by Git
-├── requirements.txt            # Python dependencies for the project
-└── README.md                   # Project documentation
+├── path.py                           # Paths for specific assets or applications
+├── path.py.example                   # Example template for `path.py`
+├── searchDir.py                      # Directories to search for installed applications
+├── eva.py                            # Main backend script for the assistant
+├── launch_eva.py                     # Script to start Eva easily
+├── .env                              # Environment variables (API keys, etc.)
+├── .env.example                      # Example template for `.env`
+├── .gitignore                        # Files and directories to be ignored by Git
+├── requirements.txt                  # Python dependencies for the project
+└── README.md                         # Project documentation
 ```
 
 ## Features
