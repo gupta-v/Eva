@@ -202,20 +202,18 @@ def extract_choice(command):
 
     return -1  # Invalid choice
 
-
 def say(text):
     engine = pyttsx3.init()
 
     # Use the Microsoft Speech API for more voices (Windows)
     voices = engine.getProperty('voices')
-    engine.setProperty('voice', voices[1].id)  #
-# Pitch of the voice (50-200)Change index if needed
+    engine.setProperty('voice', voices[1].id)  # Change index if needed
+    # Set the speech rate (default is usually ~200 words per minute)
+    rate = engine.getProperty('rate')  # Get the current rate
+    engine.setProperty('rate', rate - 10)  # Decrease the rate for slower speech
 
     engine.say(text)
     engine.runAndWait()
-
-# Example usage
-
 
 def takeCommand():
     r = sr.Recognizer()
@@ -240,12 +238,16 @@ def takeCommand():
 
 
 def main():
+    
     user_info = get_user_info()  # Get the user info (ask if first time, else load from file)
     configure_genai(user_info)   # Configure Eva with the user's info
+    
     print(f"Welcome Back, {user_info['preferred_name']}!",flush=True)
     say(f"Welcome Back, {user_info['preferred_name']}!")
+    
     print("\nEva at your service Sir...", flush=True)
     say("Eva at your service sir")
+    
     app_paths = scan_apps()
     
     while True:
@@ -271,8 +273,20 @@ def main():
             print("\nsigning off for today,have a nice day sir...", flush=True)
             say("signing off for today         Have a nice day sir...")
             exit()
-
+        
+        elif "the time".lower() in query.lower():
+            strf=datetime.datetime.now().strftime("%H:%M:%S")
+            print(f"\nThe time is {strf}" , flush=True)
+            say("The time is ")
+            say(strf)
                 
+
+        elif "Play Music".lower() in query.lower():
+            musicPath = "C:/Users/Lenovo/Music/mr_steal_ur_girl.mp3"
+            print("\nPlaying Music", flush=True)
+            say("Playing Music")
+            subprocess.call(["start", musicPath], shell=True)
+
         elif "list noted websites".lower() in query.lower():
             print("\nHere are the noted websites sir...", flush=True)
             say("\nHere are the noted websites sir...")
@@ -282,56 +296,24 @@ def main():
                 say(f"{site[0]}")
                 idx+=1
         
-        elif "search and open" in query or "find application" in query:
-            app_name = query.replace("search and open", "").replace("find app", "").strip()
-            matches = search(app_name, app_paths)
-            
-            if matches:
-                print(f"\nI found the  matches for {app_name}:",flush=True)
-                say(f"I found the matches for {app_name}:")
+        elif "web"in query.lower() and "search" in query.lower():
+            # Handle multiple possible search phrases
+            if "search" in query.lower():
+                search_query = query.lower().replace("web search", "").replace("web search for","").replace("search on web for", "").replace("search on the web for", "").replace("search for","").strip()
                 
-                # List options for the user
-                for idx, (match, score) in enumerate(matches, start=1):
-                    print(f"\n{idx}. {match} (Confidence: {score}%)",flush=True)
-                    say(f"Option {idx}: {match}")
-                
-                # Wait for user to select an option
-                print("\nPlease say a choice like first option, option 2, none or none of the above to cancel.",flush=True)
-                say("Please say a choice like first option, option 2, none or none of the above to cancel.")
-                
-                while True:
-                    # Listen for user response
-                    option_query = takeCommand()
-                    print("\n" + option_query,flush=True)
-                    choice = extract_choice(option_query)
+            # Clean up by removing any leading phrase like "Eva"
+            search_query = search_query.replace("eva", "").strip()  # Optionally remove "Eva" if it exists
+            search_query = search_query.lstrip()  # Strip any leading unwanted words
 
-                    # If user says "none" or "none of the above", cancel the operation
-                    if "none" in option_query.lower() or "none of the above" in option_query.lower():
-                        print("\nCancelled. No application will be opened.",flush=True)
-                        say("Cancelled. No application will be opened.")
-                        break  # Cancel the operation
-
-                    # If the choice is valid (1, 2, 3, etc.), launch the selected app
-                    elif 1 <= choice <= len(matches):
-                        selected_app = matches[choice - 1][0]
-                        say(f"Opening {selected_app} now.")
-                        launch_app(app_paths[selected_app.lower()])
-                        break  # Exit the loop once the app is opened
-
-                    # If the user gives an invalid option, ask again
-                    else:
-                        print("\nInvalid choice. Please try again.",flush=True)
-                        say("Invalid choice. Please try again.")
+            if search_query:  # Ensure the search query is not empty
+                print("\nSearching on the web for:", search_query, flush=True)
+                say(f"Searching on the web for: {search_query}")
+                search_url = f"https://www.google.com/search?q={search_query}"
+                webbrowser.open(search_url)
             else:
-                say("No matching applications found.")
-
-
-        elif "Play Music".lower() in query.lower():
-            musicPath = "C:/Users/Lenovo/Music/mr_steal_ur_girl.mp3"
-            print("\nPlaying Music", flush=True)
-            say("Playing Music")
-            subprocess.call(["start", musicPath], shell=True)
-
+                print("\nNo search query found!", flush=True)
+                say("I couldn't find any search query. Please try again.")
+        
         elif "Open Spotify".lower() in query.lower():
             pathToSpotify=path.PATH_TO_SPOTIFY
             print("\nOpening Spotify Sir...", flush=True)
@@ -416,33 +398,51 @@ def main():
             print("\nOpening Powershell Sir...", flush=True)
             say("Opening Powershell Sir...")
             os.startfile(pathToPowershell) # Open Command Prompt
-            
 
         
-        elif "the time".lower() in query.lower():
-            strf=datetime.datetime.now().strftime("%H:%M:%S")
-            print(f"\nThe time is {strf}" , flush=True)
-            say("The time is ")
-            say(strf)
-
-
-        elif "search" in query.lower():
-            # Handle multiple possible search phrases
-            if "search" in query.lower():
-                search_query = query.lower().replace("web search", "").replace("web search for","").replace("search on web for", "").replace("search on the web for", "").replace("search for","").strip()
+        elif "search and launch" in query or "find application" in query:
+            app_name = query.replace("search and launch", "").replace("find application", "").strip()
+            matches = search(app_name, app_paths)
+            
+            if matches:
+                print(f"\nI found the  matches for {app_name}:",flush=True)
+                say(f"I found the matches for {app_name}:")
                 
-            # Clean up by removing any leading phrase like "Eva"
-            search_query = search_query.replace("eva", "").strip()  # Optionally remove "Eva" if it exists
-            search_query = search_query.lstrip()  # Strip any leading unwanted words
+                # List options for the user
+                for idx, (match, score) in enumerate(matches, start=1):
+                    print(f"\n{idx}. {match} (Confidence: {score}%)",flush=True)
+                    say(f"Option {idx}: {match}")
+                
+                # Wait for user to select an option
+                print("\nPlease say a choice like first option, option 2, none or none of the above to cancel.",flush=True)
+                say("Please say a choice like first option, option 2, none or none of the above to cancel.")
+                
+                while True:
+                    # Listen for user response
+                    option_query = takeCommand()
+                    print("\n" + option_query,flush=True)
+                    choice = extract_choice(option_query)
 
-            if search_query:  # Ensure the search query is not empty
-                print("\nSearching on the web for:", search_query, flush=True)
-                say(f"Searching on the web for: {search_query}")
-                search_url = f"https://www.google.com/search?q={search_query}"
-                webbrowser.open(search_url)
+                    # If user says "none" or "none of the above", cancel the operation
+                    if "none" in option_query.lower() or "none of the above" in option_query.lower():
+                        print("\nCancelled. No application will be opened.",flush=True)
+                        say("Cancelled. No application will be opened.")
+                        break  # Cancel the operation
+
+                    # If the choice is valid (1, 2, 3, etc.), launch the selected app
+                    elif 1 <= choice <= len(matches):
+                        selected_app = matches[choice - 1][0]
+                        say(f"Opening {selected_app} now.")
+                        launch_app(app_paths[selected_app.lower()])
+                        break  # Exit the loop once the app is opened
+
+                    # If the user gives an invalid option, ask again
+                    else:
+                        print("\nInvalid choice. Please try again.",flush=True)
+                        say("Invalid choice. Please try again.")
             else:
-                print("\nNo search query found!", flush=True)
-                say("I couldn't find any search query. Please try again.")
+                say("No matching applications found.")
+
                 
         elif "reset chat".lower() in query.lower():
             Chatstr=""
@@ -454,14 +454,24 @@ def main():
             say(results)
         
         elif "Eva Listen".lower() in query.lower() or "Eva Let's Chat".lower() in query.lower():
-            print("Entering chat mode..., To Exit Chat Mode say Eva Quit Chat or Eva Exit Chat", flush=True)
-            say("Entering chat mode..., To Exit Chat Mode... say Eva Quit Chat or Eva Exit Chat")
+            print("Entering chat mode, To Exit Chat Mode say Eva Quit Chat or Eva Exit Chat", flush=True)
+            say("Entering chat mode..., To Exit Chat Mode")
+            say("say Eva Quit Chat or Eva Exit Chat")
             while True:
                 query = takeCommand()
+                print(query, flush=True)
                 if "Eva Quit Chat".lower() in query.lower() or "Eva Exit Chat" in query.lower():
                     print("Exiting chat mode...", flush=True)
                     say("Exiting chat mode...")
                     break
+                
+                elif "Using Artificial Intelligence".lower() in query.lower():
+                    AI(prompt=query)
+                    title=(' '.join(query.split('intelligence')[1:]).strip())
+                    print(f"\nEva: You can view the AI response for {title} generated by me in the AI_Responses.",flush=True)
+                    say(f"You can view the AI response for {title}")
+                    say("generated by me in the AI_Responses.")
+                    
                 else:
                     print("\nChatting..\n", flush=True)
                     results = aichat(query)  

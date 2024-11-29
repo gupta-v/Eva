@@ -150,7 +150,7 @@ Eva serves as a versatile desktop assistant, catering to a wide range of user ne
   - **List Websites**: "List Noted Websites"
   - **Web Search**: "Search on web for Python tutorials", "Web Search for Coding contests"
   - **Control Applications**: "Open Opera GX", "Open Spotify"
-  - **Scan Disks and Open Installed Applications**: "Search and open VLC", "Find application Brave"
+  - **Scan Disks and Open Installed Applications**: "Search and Launch Canva", "Find application Brave"
   - **AI Interaction**: "Answer me (followed by question or query)"
   - **Enter AI Chat**:
     ```plaintext
