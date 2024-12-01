@@ -2,6 +2,7 @@
 
 # Application:
 PATH_TO_SPOTIFY= your_spotify_path_here
+PATH_TO_SIGNAL= your_signal_path_here
 
 #Browsers:
 PATH_TO_OPERA_GX= your_opera_gx_path_here

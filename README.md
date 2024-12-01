@@ -11,6 +11,14 @@ Eva
 │
 ├── AI_Response                       # Folder for storing AI-generated responses
 │
+├── EvaFunctions
+│   ├── appHandling.py                # Script for Handling Apps for Eva
+│   ├── appLaunch.py                  # Script for Launching Apps Mentioned in Path for Eva
+│   ├── geminiConfgs.py               # Script for Configuring and Handling Gemini AI
+│   ├── musicHandling.py              # Script for Handling Music and its Features
+│   ├── sr_tts.py                     # Script for Speech Recognition and Text-To-Speech
+│   └── webSearchHandling.py          # Script for Handling Web Searches
+│
 ├── FlaskApp                          # Flask frontend application
 │   ├── static                        # Static assets like images and CSS
 │   │   ├── assets
@@ -88,6 +96,8 @@ Eva serves as a versatile desktop assistant, catering to a wide range of user ne
    cd Eva
    ```
 
+````
+
 2. Create and activate a virtual environment (optional but recommended):
 
    ```sh
@@ -140,26 +150,7 @@ Eva serves as a versatile desktop assistant, catering to a wide range of user ne
    python eva.py
    ```
 
-2. Eva will start listening for your commands.
-
-- Here are commands that you can say:
-
-  - **Report Time**: "What is the time?"
-  - **Play Music**: "Play Music"
-  - **Open Websites**: "Open YouTube", "Open Google", "Open Wikipedia"
-  - **List Websites**: "List Noted Websites"
-  - **Web Search**: "Search on web for Python tutorials", "Web Search for Coding contests"
-  - **Control Applications**: "Open Opera GX", "Open Spotify"
-  - **Scan Disks and Open Installed Applications**: "Search and Launch Canva", "Find application Brave"
-  - **AI Interaction**: "Answer me (followed by question or query)"
-  - **Enter AI Chat**:
-    ```plaintext
-    "Eva Listen", "Eva Let's Chat"     # To Enter Chat Mode
-    "Eva Quit Chat", "Eva Exit Chat"   # To Quit Chat Mode
-    ```
-  - **AI Generation**: "Using Artificial Intelligence (followed by request or parameters)"
-    - Generates and the response in .txt format and saves it in AI_Response folder
-  - **Clearing the Terminal Screen**: "Clear Terminal"
+2. Eva will start listening for your commands.Interact As you Like.
 
 3. To quit Eva, say: "Eva quit", "Eva exit".
 
@@ -216,7 +207,39 @@ Eva serves as a versatile desktop assistant, catering to a wide range of user ne
    - You can open the response by clicking on the file name.
    - It will open a new tab with the file.
 
+## Interaction Commands
+
+- Here are commands that you can say:
+
+  - **Report Time**: "What is the time?"
+  - **Play Music**: "Play Music", "Pause music" , "Next Song", "Previous Song"
+  - **Open Websites**: "Open YouTube", "Open Google", "Open Wikipedia"
+  - **List Websites**: "List Noted Websites"
+  - **Web Search**: "Search on web for Python tutorials", "Web Search for Coding contests"
+  - **Control Applications**: "Open Opera GX", "Open Spotify"
+  - **Scan Disks and Open Installed Applications**: "Search and Launch Canva", "Find application Brave"
+  - **AI Interaction**: "Answer me (followed by question or query)"
+  - **Enter AI Chat**:
+    ```plaintext
+    "Eva Listen", "Eva Let's Chat"     # To Enter Chat Mode
+    "Eva Quit Chat", "Eva Exit Chat"   # To Quit Chat Mode
+    ```
+  - **AI Generation**: "Using Artificial Intelligence (followed by request or parameters)"
+    - Generates and the response in .txt format and saves it in AI_Response folder
+  - **Clearing the Terminal Screen**: "Clear Terminal"
+  - **Closing the Program**: "Eva Quit", "Eva Exit"
+
 ## Customizations
+
+### Adding Music Directory for Music Controls
+
+1. Add your music directory to the music directory path in the `musicHandling.py` file.
+2. Locate this Line of Code in the `musicHandling.py`. It should Look Something Like This.
+   ```python
+   # Define the music folder path
+   MUSIC_FOLDER = "C:/Users/Lenovo/Music" #Add your_music_directory_path
+   ```
+3. Add Your Own Path for Your Music Folder.
 
 ### Adding New Sites
 
@@ -244,53 +267,71 @@ You can customize Eva to open additional Applications by adding the code in the 
 
 To add a new application, follow these steps:
 
-1. Locate the section in the main script (`eva.py`) where applications are opened. It should look like this:
+- Locate the script in the EvaFunctions named (`appLaunch.py`) where Functions are opened. It should look like this:
 
-```python
-elif "Open App_name".lower() in query.lower():
-    pathToApp = path.PATH_TO_APP
-    print("Opening App_name Sir...")
-    say("Opening App_name Sir...")
-    subprocess.Popen(pathToApp)
-```
+  ```python
+  def openAppName():
+              pathToApp=path.PATH_TO_App
+              print("\nOpening your app sir..", flush=True)
+              say("Opening your app sir..")
+              subprocess.Popen(pathToApp)
 
-To add a new application, follow these steps:
+  ```
 
-1. Add your application paths to the `path.py` file:
+  1.  Add your application paths to the `path.py` file:
 
-   - Refer to the `path.py.example` file for the structure.
+      - Refer to the `path.py.example` file for the structure.
 
-   ```python
-   APPLICATION_PATH=your_application_path_here
-   ```
+      ```python
+      PATH_TO_DEVAPP=your_dev_app_application_path_here
+      ```
 
-2. Replace `"Open App_name"` with the name of your application. For example, if your application is named "YourAppName", it would look like this:
+  2.  In `appLaunch.py` Replace `"OpenAppName"` with the name of your application. For example, if your application is named "DevApp", it would look like this:
 
-   ```python
-   elif "Open YourAppName".lower() in query.lower():
-   ```
+      ```python
+      def openDevApp():
+      ```
 
-3. Replace the pathToApp variable with the path to your application's executable file. For example:
+  3.  Replace the pathToApp variable with the path to your application's executable file. For example:
 
-   ```python
-   pathToYourApp = path.PATH_TO_YOURAPP
-   ```
+      ```python
+      pathToDevApp = path.PATH_TO_DEVAPP
+      ```
 
-4. Update the message to be spoken and printed by Eva to indicate the opening of your application. For example:
+  4.  Update the message to be spoken and printed by Eva to indicate the opening of your application. For example:
 
-   ```python
-   print("Opening YourAppName Sir...")
-   say("Opening YourAppName Sir...")
-   ```
+      ```python
+      print("Opening DevApp Sir...",flush=True)
+      say("Opening DevApp Sir...")
+      ```
 
-5. Here's how the updated section would look:
+  5.  Here's how the updated section would look:
 
-   ```python
-   elif "Open YourAppName".lower() in query.lower():
-      pathToYourApp = path.PATH_TO_YOURAPP
-      say("Opening YourAppName Sir...")
-      subprocess.Popen(pathToYourApp)
-   ```
+      ```python
+      def OpenDevApp():
+         pathToDevApp = path.PATH_TO_DEVAPP
+         print("Opening DevApp Sir...",flush=True)
+         say("Opening DevApp Sir...")
+         subprocess.Popen(pathToDevApp)
+      ```
+
+- Locate the section in the main script (`eva.py`) where applications are opened. It should look like this:
+
+  ```python
+  elif "your_app_name".lower() in query.lower():
+              appLaunch.openAppName()
+  ```
+
+  1.  Change this After You created the function to open your application `(OpenDevApp)` in `appLaunch.py`.
+
+  2.  In `eva.py` Replace `"your_app_name"` with the name of your application. For example, if your application is named "DevApp", it would look like this:
+
+      ```python
+         elif "DevApp".lower() in query.lower():
+            appLaunch.openDevApp()
+      ```
+
+  3.  Ensure that you have implemented the `openDevApp` function in `appLaunch.py` following the instructions provided for creating the function in `appLaunch.py`.
 
 ### Customizing Application Search Directories
 
@@ -360,3 +401,4 @@ Eva saves the AI-generated responses in a folder named AI_Responses in the root 
 - Ensure that the paths to applications and folders in path.py and searchDir.py are valid for your system.
 
 - You can further customize Eva by modifying the eva.py file to include additional websites or applications as per your preferences.
+````
