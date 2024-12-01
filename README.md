@@ -400,8 +400,4 @@ Eva saves the AI-generated responses in a folder named AI_Responses in the root 
 
 - Ensure that the paths to applications and folders in path.py and searchDir.py are valid for your system.
 
-- You can further customize Eva by modifying the eva.py file to include additional websites or applications as per your preferences.
-
-```
-
-```
+- You can further customize Eva by modifying the eva.py (Main Script) and EvaFunctions to include additional websites or applications as per your preferences.
