@@ -148,7 +148,9 @@ Eva serves as a versatile desktop assistant, catering to a wide range of user ne
    python eva.py
    ```
 
-2. Eva will start listening for your commands.Interact As you Like.
+2. Eva will start listening for your commands. Interaction would begin from here with Eva using commands.
+
+   - [Scroll Down](#eva-voice-command-guide) to view the complete list of voice commands for interacting with Eva.
 
 3. To quit Eva, say: "Eva quit", "Eva exit".
 
@@ -205,7 +207,7 @@ Eva serves as a versatile desktop assistant, catering to a wide range of user ne
    - You can open the response by clicking on the file name.
    - It will open a new tab with the file.
 
-## Interaction Commands
+## Eva Voice Command Guide
 
 - Here are commands that you can say:
 
