@@ -89,54 +89,59 @@ Eva serves as a versatile desktop assistant, catering to a wide range of user ne
 
 ### Installation
 
-1. Clone the repository:
+1.  Clone the repository:
 
-   ```sh
-   git clone https://github.com/gupta-v/Eva.git
-   cd Eva
-   ```
+    ```sh
+    git clone https://github.com/gupta-v/Eva.git
+    cd Eva
+    ```
 
-2. Create and activate a virtual environment (optional but recommended):
+2.  Create and activate a virtual environment (optional but recommended):
 
-   ```sh
-   python -m venv env
-   env\Scripts\activate
-      # On Mac use `source env/bin/activate`
-   ```
+    ```sh
+    python -m venv env
+    env\Scripts\activate
+       # On Mac use `source env/bin/activate`
+    ```
 
-3. Install the required packages:
+3.  Install the required packages:
 
-   ```sh
-   pip install -r requirements.txt
-   ```
+    ```sh
+    pip install -r requirements.txt
+    ```
 
-4. Set up your environment variables:
+4.  Set up your environment variables:
 
-   - Create a `.env` file in the root directory of the project.
-   - Add your Gemini API key to the `.env` file:
-     ```
-     GEMINI_API_KEY=your_gemini_api_key_here
-     ```
+    - Create a `.env` file in the root directory of the project.
+    - Add your Gemini API key to the `.env` file:
 
-5. Set up your application paths:
+      ```
+      GEMINI_API_KEY=your_gemini_api_key_here
+      ```
 
-   - Create a `path.py` file in the root directory of the project.
-   - Add your application paths to the `path.py` file:
-   - Refer to the `path.py.example` file for the structure.
+          You'll need to:
 
-   ```
-    APPLICATION_PATH=your_application_path_here
-   ```
+             - Get a Google API key from [Google AI Studio](https://aistudio.google.com/)
 
-6. Set up path of response folder:
+5.  Set up your application paths:
 
-   - Add your folder path to the `path.py` file:
-   - Refer to the `path.py.example` file for the structure.
+    - Create a `path.py` file in the root directory of the project.
+    - Add your application paths to the `path.py` file:
+    - Refer to the `path.py.example` file for the structure.
 
-   ```
-   PATH_TO_AI_RESPONSES="your_path_to_ai_responses"
+    ```
+     APPLICATION_PATH=your_application_path_here
+    ```
 
-   ```
+6.  Set up path of response folder:
+
+    - Add your folder path to the `path.py` file:
+    - Refer to the `path.py.example` file for the structure.
+
+    ```
+    PATH_TO_AI_RESPONSES="your_path_to_ai_responses"
+
+    ```
 
 ## Usage
 
