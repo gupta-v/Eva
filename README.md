@@ -119,9 +119,8 @@ Eva serves as a versatile desktop assistant, catering to a wide range of user ne
       GEMINI_API_KEY=your_gemini_api_key_here
       ```
 
-          You'll need to:
-
-             - Get a Google API key from [Google AI Studio](https://aistudio.google.com/)
+    - You'll need to:
+      - Get a Google API key from [Google AI Studio](https://aistudio.google.com/)
 
 5.  Set up your application paths:
 
