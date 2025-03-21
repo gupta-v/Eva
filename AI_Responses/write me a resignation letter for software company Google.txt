@@ -1,0 +1,17 @@
+AI response for Prompt: using artificial intelligence write me a resignation letter for software company Google
+
+***************************************************************************
+
+Subject: Resignation - Vaibhav Gupta
+
+Dear [Manager's Name],
+
+Please accept this email as formal notification that I am resigning from my position as [Your Position] at Google, effective [Your Last Day of Employment].
+
+Thank you for the opportunities I've been given during my time at Google. I have learned and grown significantly, and I appreciate the experiences I've gained.
+
+I wish you and Google continued success.
+
+Sincerely,
+
+Vaibhav Gupta
