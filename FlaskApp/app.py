@@ -67,16 +67,33 @@ def ask_info():
 def run_eva():
     global eva_process
     if eva_process is None or eva_process.poll() is not None:
-        # Dynamically get the path to eva.py
-        eva_py_path = os.path.join(os.path.dirname(__file__), '..', 'eva.py')
+        # --- START OF CHANGES ---
         
-        # Start eva.py only if it's not running
+        # Get the absolute path to the project's root directory
+        project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+        
+        # Build the full path to the Python executable inside the virtual environment
+        python_executable = os.path.join(project_root, 'env', 'Scripts', 'python.exe')
+        
+        # Dynamically get the path to eva.py
+        eva_py_path = os.path.join(project_root, 'eva.py')
+        
+        # Check if the venv python executable exists
+        if not os.path.exists(python_executable):
+            # Fallback for safety, though the specific path is preferred
+            python_executable = 'python'
+
+        # Start eva.py using the SPECIFIC python from your virtual env
         eva_process = subprocess.Popen(
-            ['python', '-u', eva_py_path],
+            [python_executable, '-u', eva_py_path], # Use the full path here
             stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            universal_newlines=True
+            stderr=subprocess.STDOUT,
+            universal_newlines=True,
+            cwd=project_root # Set the working directory to the project root
         )
+        
+        # --- END OF CHANGES ---
+        
         return jsonify({'status': 'Eva started'})
     else:
         return jsonify({'status': 'Eva is already running'})
@@ -105,7 +122,6 @@ def stream():
                     yield "data:clear\n\n"  # Send a 'clear' signal to front-end
                 else:
                     yield f"data:{stdout_line}\n\n"
-            eva_process.stdout.close()
         else:
             yield "data:Eva is not running\n\n"
 
